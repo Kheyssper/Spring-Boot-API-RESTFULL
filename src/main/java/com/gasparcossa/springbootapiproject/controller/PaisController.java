@@ -188,7 +188,7 @@ public class PaisController {
     public ResponseEntity<String> deletePais(
             @PathVariable("id") long id) {
         paisService.deletePais(id);
-        return new ResponseEntity<String>("Pais deletado com sucesso!.", HttpStatus.OK);
+        return new ResponseEntity<String>("Pais deletado com sucesso!. ", HttpStatus.OK);
 
     }
 
