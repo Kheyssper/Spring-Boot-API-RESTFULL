@@ -75,7 +75,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     return new ResponseEntity<Object>(errors, HttpStatus.BAD_REQUEST);
   }
-
+  
   /**
   * Vai customizar todas as excessoes alem das outras especializadas por mim
   */
@@ -88,8 +88,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   return new ResponseEntity<Object>(erros, status);
   }
-
-
 
   /**
    * Customiza a informacao quando o corpo da solicitacao e invalido

@@ -50,6 +50,8 @@ public class PaisController {
      **/
     @PostMapping("/save")
     ResponseEntity<Object> create(@Valid @RequestBody Pais pais) {
+
+        // Antes veriicamos se ja tem um pis com essa capital, para nao repetimos
         List<Pais> paises = paisService.getAllPaises();
         int flag = 0;
         for (int i = 0; i < paises.size(); i++) {
@@ -58,10 +60,9 @@ public class PaisController {
                 flag++;
             }
         }
-
         if (flag > 0) {
             List<String> error = new ArrayList<String>();
-            error.add("Nao podes inserir o mesmo pais com a mesma capital");
+            error.add("Nao pode inserir esse pais com essa capital pois ele existe.");
             return new ResponseEntity<Object>(error, HttpStatus.OK);
         }
         return new ResponseEntity<Object>(paisService.savePais(pais), HttpStatus.OK);
@@ -159,6 +160,7 @@ public class PaisController {
      **/
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> updatePais(@PathVariable("id") long id, @Valid @RequestBody Pais pais) {
+        // Verificamos se o usuario nao vai inserir um pais com a mesma caital
         List<Pais> paises = paisService.getAllPaises();
         int flag = 0;
         for (int i = 0; i < paises.size(); i++) {
