@@ -52,6 +52,7 @@ public class PaisController {
     ResponseEntity<Object> create(@Valid @RequestBody Pais pais) {
 
         // Antes veriicamos se ja tem um pis com essa capital, para nao repetimos
+        //Sabendo que tem paises com mais de uma capital
         List<Pais> paises = paisService.getAllPaises();
         int flag = 0;
         for (int i = 0; i < paises.size(); i++) {
