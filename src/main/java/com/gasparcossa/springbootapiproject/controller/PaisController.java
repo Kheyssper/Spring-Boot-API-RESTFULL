@@ -62,22 +62,14 @@ public class PaisController {
     @PostMapping("/save")
     ResponseEntity<Object> create(@Valid @RequestBody Pais pais) {
 
-        // Antes veriicamos se ja tem um pis com essa capital, para nao repetimos
-        // Sabendo que tem paises com mais de uma capital
-        List<Pais> paises = paisService.getAllPaises();
-        int flag = 0;
-        for (int i = 0; i < paises.size(); i++) {
-            if (paises.get(i).getNome().equals(pais.getNome())
-                    && paises.get(i).getCapital().equals(pais.getCapital())) {
-                flag++;
-            }
-        }
-        if (flag > 0) {
+        if (paisService.sameCapitalInPaises(pais)) {
             List<String> error = new ArrayList<String>();
-            error.add("Nao pode inserir esse pais com essa capital pois ele existe.");
+            error.add("Nao podes inserir uma capital ja cadastrada!");
             return new ResponseEntity<Object>(error, HttpStatus.OK);
         }
+
         return new ResponseEntity<Object>(paisService.savePais(pais), HttpStatus.OK);
+
     }
 
     /**
@@ -172,20 +164,13 @@ public class PaisController {
      **/
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> updatePais(@PathVariable("id") long id, @Valid @RequestBody Pais pais) {
-        // Verificamos se o usuario nao vai inserir um pais com a mesma caital
-        List<Pais> paises = paisService.getAllPaises();
-        int flag = 0;
-        for (int i = 0; i < paises.size(); i++) {
-            if (paises.get(i).getNome().equals(pais.getNome())
-                    && paises.get(i).getCapital().equals(pais.getCapital())) {
-                flag++;
-            }
-        }
-        if (flag > 0) {
+
+        if (paisService.sameCapitalInPaises(pais)) {
             List<String> Erro = new ArrayList<String>();
-            Erro.add("O pais atualizado ja contem uma capital com esse nome");
+            Erro.add("Nao pode atualizar o pais com essa capital pois ja foi cadastrado.");
             return new ResponseEntity<Object>(Erro, HttpStatus.OK);
         }
+
         return new ResponseEntity<Object>(paisService.updatePais(pais, id), HttpStatus.OK);
     }
 

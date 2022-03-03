@@ -27,5 +27,7 @@ public interface PaisService {
    Pais updatePais(Pais pais, long id);
 
    void deletePais(long id);
+   
+   boolean sameCapitalInPaises(Pais pais);
 
 }

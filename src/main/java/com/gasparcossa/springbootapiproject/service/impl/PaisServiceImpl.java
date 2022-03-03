@@ -176,4 +176,23 @@ public class PaisServiceImpl implements PaisService {
         paisRepository.deleteById(id);
     }
 
+       /**
+     * Verifica se ja existe um pais com essa capital que queremos inserir
+     * @param pais Instancia de Pais
+     * @return true se existe e false se nao
+     */
+    @Override
+    public boolean sameCapitalInPaises(Pais pais) {
+        List<Pais> paises = this.getAllPaises();
+        int flag = 0;
+        for (int i = 0; i < paises.size(); i++) {
+            if (paises.get(i).getCapital().equals(pais.getCapital())) {
+                flag++;
+            }
+        }
+        if (flag > 0) {
+            return true;
+        }
+        return false;
+    }
 }
