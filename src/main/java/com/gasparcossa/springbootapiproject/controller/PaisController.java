@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 // os metodos de tratamento de requisicoes escrevamos a anotacao @ResponseBody
 @RestController
 @Validated
-@RequestMapping(value = "/pais")
 public class PaisController {
 
     @Autowired
