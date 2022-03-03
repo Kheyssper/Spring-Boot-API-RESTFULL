@@ -50,7 +50,7 @@ public class PaisController {
      **/
     @GetMapping("/")
     String inicio() {
-        return ("Bem vindo a API RESTFULL: Siga os endpoints no codigo fonte para ve-los a funcionar. \nObrigado");
+        return ("Bem vindo a API RESTFULL. Por favor siga os endpoints no codigo fonte para ve-los a funcionar. Obrigado");
     }
 
     /**
