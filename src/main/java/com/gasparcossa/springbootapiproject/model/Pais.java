@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * Entidade com propriedades do um pais
  */
@@ -16,7 +18,8 @@ import javax.validation.constraints.Pattern;
 public class Pais {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment",strategy ="increment")
     private long id;
 
     @Column(name = "nome")
